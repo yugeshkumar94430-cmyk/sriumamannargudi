@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRIUMA Electricals, Mannargudi - Price List</title>
+<style>
+  :root{
+    --blue:#0b5ed7;
+    --blue-dark:#08408f;
+    --bg:#f4f6f9;
+    --card:#ffffff;
+    --text:#1c2530;
+    --muted:#6b7684;
+    --border:#e3e7ee;
+    --accent:#ffb703;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI',Arial,sans-serif;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(11,94,215,0.05) 0, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,183,3,0.06) 0, transparent 40%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%230b5ed7' stroke-opacity='0.07' stroke-width='3'%3E%3Cpath d='M-20 40 Q 40 0, 100 40 T 220 40'/%3E%3Cpath d='M-20 110 Q 40 70, 100 110 T 220 110'/%3E%3Cpath d='M-20 180 Q 40 140, 100 180 T 220 180'/%3E%3C/g%3E%3Cg fill='%2308408f' fill-opacity='0.06'%3E%3Ccircle cx='40' cy='40' r='4'/%3E%3Ccircle cx='160' cy='110' r='4'/%3E%3Ccircle cx='80' cy='180' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment:fixed;
+    color:var(--text);
+    padding-bottom:40px;
+    min-height:100vh;
+  }
+  header{
+    background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+    color:#fff;
+    padding:22px 16px 60px;
+    text-align:center;
+    position:relative;
+  }
+  header h1{
+    font-size:1.8rem;
+    letter-spacing:1px;
+  }
+  header p{
+    margin-top:6px;
+    font-size:0.9rem;
+    opacity:0.9;
+  }
+  .loc-inline{
+    font-size:0.85rem;
+    letter-spacing:1.5px;
+    color:var(--accent);
+    font-weight:700;
+    vertical-align:middle;
+    margin-left:4px;
+  }
+  .container{
+    max-width:900px;
+    margin:-40px auto 0;
+    padding:0 14px;
+  }
+  .search-box{
+    background:var(--card);
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    padding:12px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .search-box input{
+    flex:1;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:1rem;
+  }
+  .search-box input:focus{outline:2px solid var(--blue);}
+  .tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin:18px 0 10px;
+    padding-bottom:4px;
+  }
+  .tab{
+    flex:0 0 auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:0.9rem;
+    cursor:pointer;
+    white-space:nowrap;
+    color:var(--muted);
+    transition:0.15s;
+  }
+  .tab.active{
+    background:var(--blue);
+    color:#fff;
+    border-color:var(--blue);
+  }
+  .category-block{
+    margin-top:20px;
+  }
+  .category-title{
+    font-size:1.1rem;
+    color:var(--blue-dark);
+    margin-bottom:10px;
+    font-weight:600;
+    border-left:4px solid var(--accent);
+    padding-left:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .category-title svg{
+    width:26px;
+    height:26px;
+    flex-shrink:0;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  }
+  th,td{
+    padding:10px 12px;
+    text-align:left;
+    font-size:0.92rem;
+    border-bottom:1px solid var(--border);
+  }
+  th{
+    background:#eef3fb;
+    color:var(--blue-dark);
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  tr:last-child td{border-bottom:none;}
+  .price{
+    font-weight:700;
+    color:var(--blue-dark);
+    white-space:nowrap;
+  }
+  .unit{
+    color:var(--muted);
+    font-size:0.8rem;
+  }
+  .edit-input{
+    width:90px;
+    padding:4px 6px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    font-size:0.9rem;
+  }
+  .row-actions button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-size:0.85rem;
+    color:var(--blue);
+    margin-right:8px;
+  }
+  .row-actions button.del{color:#d33;}
+  .no-results{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 0;
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.8rem;
+    margin-top:30px;
+  }
+  .top-bar{
+    max-width:900px;
+    margin:14px auto 0;
+    padding:0 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .user-chip{
+    font-size:0.85rem;
+    color:var(--muted);
+    background:var(--card);
+    padding:6px 12px;
+    border-radius:16px;
+    border:1px solid var(--border);
+  }
+  .user-chip b{color:var(--blue-dark);}
+  .owner-tag{
+    background:var(--accent);
+    color:#3a2a00;
+    font-weight:700;
+    padding:1px 7px;
+    border-radius:10px;
+    font-size:0.7rem;
+    margin-left:6px;
+  }
+  .btn{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:6px 14px;
+    border-radius:18px;
+    font-size:0.8rem;
+    cursor:pointer;
+    color:var(--muted);
+  }
+  .btn.active{
+    background:var(--accent);
+    color:#3a2a00;
+    border-color:var(--accent);
+  }
+  .btn.logout{
+    background:#fff0f0;
+    color:#d33;
+    border-color:#f3caca;
+  }
+  .add-row{
+    display:none;
+    gap:6px;
+    margin:10px 0;
+    flex-wrap:wrap;
+  }
+  .add-row input{
+    padding:6px 8px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    font-size:0.85rem;
+  }
+  .add-row button{
+    background:var(--blue);
+    color:#fff;
+    border:none;
+    padding:6px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:0.85rem;
+  }
+  .owner-mode .add-row{display:flex;}
+
+  /* Auth screen */
+  .auth-screen{
+    position:fixed;
+    inset:0;
+    background-color:var(--blue-dark);
+    background-image:
+      linear-gradient(135deg, rgba(11,94,215,0.92), rgba(8,64,143,0.95)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='3'%3E%3Cpath d='M-20 40 Q 40 0, 100 40 T 220 40'/%3E%3Cpath d='M-20 110 Q 40 70, 100 110 T 220 110'/%3E%3Cpath d='M-20 180 Q 40 140, 100 180 T 220 180'/%3E%3C/g%3E%3Cg fill='%23ffb703' fill-opacity='0.15'%3E%3Ccircle cx='40' cy='40' r='4'/%3E%3Ccircle cx='160' cy='110' r='4'/%3E%3Ccircle cx='80' cy='180' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:200;
+  }
+  .auth-box{
+    background:#fff;
+    border-radius:16px;
+    padding:30px 26px;
+    width:100%;
+    max-width:340px;
+    box-shadow:0 14px 40px rgba(0,0,0,0.3);
+  }
+  .auth-box h1{
+    text-align:center;
+    color:var(--blue-dark);
+    font-size:1.5rem;
+    margin-bottom:2px;
+  }
+  .auth-box .tagline{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.85rem;
+    margin-bottom:20px;
+  }
+  .auth-box h2{
+    color:var(--blue-dark);
+    font-size:1.1rem;
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .auth-box input{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    font-size:1rem;
+    margin-bottom:12px;
+  }
+  .auth-box button.primary{
+    width:100%;
+    background:var(--blue);
+    color:#fff;
+    border:none;
+    padding:11px;
+    border-radius:8px;
+    font-size:1rem;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .auth-switch{
+    text-align:center;
+    margin-top:14px;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .auth-switch a{
+    color:var(--blue);
+    text-decoration:underline;
+    cursor:pointer;
+  }
+  .auth-error{
+    color:#d33;
+    font-size:0.8rem;
+    text-align:center;
+    min-height:16px;
+    margin-bottom:6px;
+  }
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<!-- ===================== AUTH SCREEN ===================== -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-box">
+    <h1>⚡ SRIUMA Electricals <span class="loc-inline">MANNARGUDI</span></h1>
+    <p class="tagline">Price List Portal</p>
+
+    <!-- LOGIN FORM -->
+    <div id="loginForm">
+      <h2>Login</h2>
+      <div class="auth-error" id="loginError"></div>
+      <input type="text" id="loginUsername" placeholder="Username">
+      <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter') doLogin()">
+      <button class="primary" onclick="doLogin()">Login</button>
+      <div class="auth-switch">New here? <a onclick="showRegister()">Create an account</a></div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="registerForm" class="hidden">
+      <h2>Create Account</h2>
+      <div class="auth-error" id="registerError"></div>
+      <input type="text" id="regUsername" placeholder="Choose a username">
+      <input type="password" id="regPassword" placeholder="Choose a password">
+      <input type="password" id="regPassword2" placeholder="Confirm password" onkeydown="if(event.key==='Enter') doRegister()">
+      <button class="primary" onclick="doRegister()">Register</button>
+      <div class="auth-switch">Already have an account? <a onclick="showLogin()">Login</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN SITE ===================== -->
+<div id="mainSite" class="hidden">
+  <header>
+    <h1>⚡ SRIUMA Electricals <span class="loc-inline">MANNARGUDI</span></h1>
+    <p>Wires · Switches & Sockets · Lights & Fans · Motors & Pumps</p>
+  </header>
+
+  <div class="top-bar">
+    <div class="user-chip">Logged in as <b id="userNameDisplay"></b><span id="ownerTag" class="owner-tag hidden">OWNER</span></div>
+    <button class="btn logout" onclick="doLogout()">Logout</button>
+  </div>
+
+  <div class="container">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search product name..." oninput="renderAll()">
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div id="catalog"></div>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> SRIUMA Electricals, Mannargudi, Tamil Nadu &nbsp;|&nbsp; Prices subject to change
+  </footer>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ======================= USER SYSTEM =======================
+// Change this to set your own owner login
+const OWNER_USERNAME = "owner";
+const OWNER_PASSWORD  = "sriuma123";
+
+function loadUsers(){
+  return JSON.parse(localStorage.getItem('sriuma_users')) || [];
+}
+function saveUsers(users){
+  localStorage.setItem('sriuma_users', JSON.stringify(users));
+}
+function getCurrentUser(){
+  return JSON.parse(sessionStorage.getItem('sriuma_current_user'));
+}
+function setCurrentUser(user){
+  sessionStorage.setItem('sriuma_current_user', JSON.stringify(user));
+}
+
+function showRegister(){
+  document.getElementById('loginForm').classList.add('hidden');
+  document.getElementById('registerForm').classList.remove('hidden');
+  document.getElementById('registerError').textContent = '';
+}
+function showLogin(){
+  document.getElementById('registerForm').classList.add('hidden');
+  document.getElementById('loginForm').classList.remove('hidden');
+  document.getElementById('loginError').textContent = '';
+}
+
+function doLogin(){
+  const uname = document.getElementById('loginUsername').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const errorBox = document.getElementById('loginError');
+
+  if(!uname || !pass){
+    errorBox.textContent = 'Enter username and password.';
+    return;
+  }
+
+  // Owner login check
+  if(uname.toLowerCase() === OWNER_USERNAME.toLowerCase() && pass === OWNER_PASSWORD){
+    setCurrentUser({username: OWNER_USERNAME, role: 'owner'});
+    enterSite();
+    return;
+  }
+
+  // Regular user check
+  const users = loadUsers();
+  const found = users.find(u => u.username.toLowerCase() === uname.toLowerCase() && u.password === pass);
+  if(found){
+    setCurrentUser({username: found.username, role: 'customer'});
+    enterSite();
+  } else {
+    errorBox.textContent = 'Incorrect username or password.';
+  }
+}
+
+function doRegister(){
+  const uname = document.getElementById('regUsername').value.trim();
+  const pass = document.getElementById('regPassword').value;
+  const pass2 = document.getElementById('regPassword2').value;
+  const errorBox = document.getElementById('registerError');
+
+  if(!uname || !pass || !pass2){
+    errorBox.textContent = 'Fill all fields.';
+    return;
+  }
+  if(uname.toLowerCase() === OWNER_USERNAME.toLowerCase()){
+    errorBox.textContent = 'That username is reserved.';
+    return;
+  }
+  if(pass !== pass2){
+    errorBox.textContent = 'Passwords do not match.';
+    return;
+  }
+
+  const users = loadUsers();
+  if(users.some(u => u.username.toLowerCase() === uname.toLowerCase())){
+    errorBox.textContent = 'Username already taken.';
+    return;
+  }
+
+  users.push({username: uname, password: pass});
+  saveUsers(users);
+  setCurrentUser({username: uname, role: 'customer'});
+  enterSite();
+}
+
+function doLogout(){
+  sessionStorage.removeItem('sriuma_current_user');
+  document.getElementById('mainSite').classList.add('hidden');
+  document.getElementById('authScreen').classList.remove('hidden');
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+  showLogin();
+}
+
+function enterSite(){
+  const user = getCurrentUser();
+  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('mainSite').classList.remove('hidden');
+  document.getElementById('userNameDisplay').textContent = user.username;
+  document.getElementById('ownerTag').classList.toggle('hidden', user.role !== 'owner');
+  document.body.classList.toggle('owner-mode', user.role === 'owner');
+  renderAll();
+}
+
+// Login is required every time the page is opened (no auto-login).
+// Clear any previous session on page load.
+window.addEventListener('DOMContentLoaded', () => {
+  sessionStorage.removeItem('sriuma_current_user');
+});
+
+// ======================= PRICE CATALOG =======================
+const defaultData = {
+  "Wires & Cables": [
+    {name:"Copper Wire 1.0 sq mm", price:1200, unit:"per coil (90m)"},
+    {name:"Copper Wire 1.5 sq mm", price:1650, unit:"per coil (90m)"},
+    {name:"Copper Wire 2.5 sq mm", price:2450, unit:"per coil (90m)"},
+    {name:"Copper Wire 4.0 sq mm", price:3800, unit:"per coil (90m)"},
+    {name:"Flexible Cable 3-core", price:45, unit:"per meter"}
+  ],
+  "Switches & Sockets": [
+    {name:"Modular Switch 6A", price:35, unit:"per piece"},
+    {name:"Modular Socket 6A", price:45, unit:"per piece"},
+    {name:"16A Socket", price:85, unit:"per piece"},
+    {name:"Switch Board (Metal Box)", price:120, unit:"per piece"},
+    {name:"MCB 32A", price:180, unit:"per piece"}
+  ],
+  "Lights & Fans": [
+    {name:"LED Bulb 9W", price:90, unit:"per piece"},
+    {name:"LED Tube Light 20W", price:220, unit:"per piece"},
+    {name:"Ceiling Fan (Standard)", price:1450, unit:"per piece"},
+    {name:"Exhaust Fan 8 inch", price:750, unit:"per piece"},
+    {name:"LED Panel Light", price:350, unit:"per piece"}
+  ],
+  "Motors & Pumps": [
+    {name:"0.5 HP Water Motor", price:3200, unit:"per piece"},
+    {name:"1 HP Water Motor", price:5200, unit:"per piece"},
+    {name:"Submersible Pump 1HP", price:6800, unit:"per piece"},
+    {name:"Pressure Booster Pump", price:4500, unit:"per piece"}
+  ]
+};
+
+let data = JSON.parse(localStorage.getItem('sriuma_catalog')) || JSON.parse(JSON.stringify(defaultData));
+let activeCategory = "All";
+
+// Simple inline SVG icons per category (no external images needed)
+const categoryIcons = {
+  "Wires & Cables": `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#eaf1fd"/>
+    <path d="M10 24c0-4 3-7 7-7s7 3 7 7-3 7-7 7-7-3-7-7z" stroke="#0b5ed7" stroke-width="2.5"/>
+    <path d="M24 24c0-4 3-7 7-7s7 3 7 7-3 7-7 7-7-3-7-7z" stroke="#08408f" stroke-width="2.5"/>
+  </svg>`,
+  "Switches & Sockets": `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#eaf1fd"/>
+    <rect x="14" y="12" width="20" height="24" rx="3" stroke="#0b5ed7" stroke-width="2.5"/>
+    <circle cx="20" cy="20" r="1.8" fill="#08408f"/>
+    <circle cx="28" cy="20" r="1.8" fill="#08408f"/>
+    <rect x="18" y="27" width="12" height="4" rx="1.5" fill="#ffb703"/>
+  </svg>`,
+  "Lights & Fans": `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#eaf1fd"/>
+    <circle cx="24" cy="20" r="8" stroke="#ffb703" stroke-width="2.5"/>
+    <path d="M21 28h6l-1.5 8h-3L21 28z" stroke="#08408f" stroke-width="2"/>
+  </svg>`,
+  "Motors & Pumps": `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#eaf1fd"/>
+    <rect x="12" y="16" width="18" height="16" rx="2" stroke="#0b5ed7" stroke-width="2.5"/>
+    <path d="M30 20h5v8h-5" stroke="#08408f" stroke-width="2.5"/>
+    <circle cx="17" cy="24" r="2" fill="#ffb703"/>
+    <circle cx="24" cy="24" r="2" fill="#ffb703"/>
+  </svg>`
+};
+function getCategoryIcon(cat){
+  return categoryIcons[cat] || `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#eaf1fd"/><path d="M24 14v20M14 24h20" stroke="#0b5ed7" stroke-width="2.5"/></svg>`;
+}
+
+function save(){
+  localStorage.setItem('sriuma_catalog', JSON.stringify(data));
+}
+
+function isOwner(){
+  const user = getCurrentUser();
+  return user && user.role === 'owner';
+}
+
+function renderTabs(){
+  const tabsDiv = document.getElementById('tabs');
+  const cats = ["All", ...Object.keys(data)];
+  tabsDiv.innerHTML = cats.map(c =>
+    `<div class="tab ${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\\'")}')">${c}</div>`
+  ).join('');
+}
+
+function setCategory(c){
+  activeCategory = c;
+  renderAll();
+}
+
+function renderAll(){
+  renderTabs();
+  const catalogDiv = document.getElementById('catalog');
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  catalogDiv.innerHTML = '';
+
+  const owner = isOwner();
+  let categoriesToShow = activeCategory === "All" ? Object.keys(data) : [activeCategory];
+  let anyResults = false;
+
+  categoriesToShow.forEach(cat => {
+    const items = data[cat] || [];
+    const filtered = items
+      .map((item, idx) => ({...item, idx}))
+      .filter(item => item.name.toLowerCase().includes(query));
+
+    if(filtered.length === 0) return;
+    anyResults = true;
+
+    const block = document.createElement('div');
+    block.className = 'category-block';
+
+    let rows = filtered.map(item => `
+      <tr>
+        <td>${item.name}<br><span class="unit">${item.unit}</span></td>
+        <td class="price">
+          ${owner
+            ? `<input class="edit-input" type="number" value="${item.price}" onchange="updatePrice('${cat.replace(/'/g,"\\'")}', ${item.idx}, this.value)">`
+            : `₹${item.price.toLocaleString('en-IN')}`}
+        </td>
+        ${owner ? `<td class="row-actions"><button class="del" onclick="deleteItem('${cat.replace(/'/g,"\\'")}', ${item.idx})">Delete</button></td>` : ''}
+      </tr>
+    `).join('');
+
+    block.innerHTML = `
+      <div class="category-title">${getCategoryIcon(cat)}<span>${cat}</span></div>
+      <table>
+        <thead><tr><th>Product</th><th>Price</th>${owner ? '<th></th>' : ''}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="add-row">
+        <input type="text" placeholder="Product name" id="newName-${cat}">
+        <input type="text" placeholder="Unit (e.g. per piece)" id="newUnit-${cat}">
+        <input type="number" placeholder="Price" id="newPrice-${cat}">
+        <button onclick="addItem('${cat.replace(/'/g,"\\'")}')">+ Add</button>
+      </div>
+    `;
+    catalogDiv.appendChild(block);
+  });
+
+  if(!anyResults){
+    catalogDiv.innerHTML = `<div class="no-results">No products found.</div>`;
+  }
+}
+
+function updatePrice(cat, idx, value){
+  if(!isOwner()) return;
+  data[cat][idx].price = parseFloat(value) || 0;
+  save();
+  renderAll();
+}
+
+function deleteItem(cat, idx){
+  if(!isOwner()) return;
+  data[cat].splice(idx, 1);
+  save();
+  renderAll();
+}
+
+function addItem(cat){
+  if(!isOwner()) return;
+  const name = document.getElementById(`newName-${cat}`).value.trim();
+  const unit = document.getElementById(`newUnit-${cat}`).value.trim() || "per piece";
+  const price = parseFloat(document.getElementById(`newPrice-${cat}`).value) || 0;
+  if(!name) return;
+  data[cat].push({name, unit, price});
+  save();
+  renderAll();
+}
+</script>
+
+</body>
+</html>
